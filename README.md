@@ -1,3 +1,3 @@
 # inalion
 
-Open with browser [Open with browser] (https://turalinov.github.io/inalion/)
+Open with browser [Link](https://turalinov.github.io/inalion/)
