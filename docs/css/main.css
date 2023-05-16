@@ -577,7 +577,6 @@ button {
 
 .hero > .container {
   position: relative;
-  overflow-x: hidden;
 }
 .hero > .container::before {
   content: "";
@@ -597,6 +596,7 @@ button {
 @media screen and (max-width: 768px) {
   .hero > .container::before {
     background-image: url("../img/hero-bg@mobile.png");
+    transform: translate(420px, -490px);
   }
 }
 
