@@ -335,6 +335,27 @@ template {
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: RightGrotesk;
+  font-display: swap;
+  src: url("../fonts/RightGrotesk-Bold.woff2") format("woff2"), url("../fonts/RightGrotesk-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: SuisseIntl;
+  font-display: swap;
+  src: url("../fonts/SuisseIntl-Book.woff2") format("woff2"), url("../fonts/SuisseIntl-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: SuisseIntl;
+  font-display: swap;
+  src: url("../fonts/SuisseIntl-Regular.woff2") format("woff2"), url("../fonts/SuisseIntl-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
 :root {
   box-sizing: border-box;
   --clr-white: #ffffff;
@@ -411,6 +432,12 @@ h1 {
   font-size: 65px;
   line-height: 1.15;
 }
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 30px;
+    line-height: 1.33;
+  }
+}
 
 h2 {
   font-size: 60px;
@@ -480,6 +507,24 @@ button {
   opacity: 1;
 }
 
+.br-desktop {
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  .br-desktop {
+    display: none;
+  }
+}
+
+.br-mobile {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .br-mobile {
+    display: block;
+  }
+}
+
 .btn {
   display: inline-block;
   font-family: "circe", sans-serif;
@@ -494,6 +539,14 @@ button {
   cursor: pointer;
   text-align: center;
   text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+  .btn {
+    font-size: 12px;
+    width: 100%;
+    padding: 15px 15px 12px 15px;
+    font-size: 13px;
+  }
 }
 
 .header {
@@ -514,7 +567,12 @@ button {
 }
 
 .hero {
-  padding-bottom: 137px;
+  padding-bottom: 45px;
+}
+@media screen and (max-width: 768px) {
+  .hero {
+    padding-bottom: 35px;
+  }
 }
 
 .hero > .container {
@@ -526,7 +584,7 @@ button {
   position: absolute;
   width: 1009px;
   height: 750px;
-  background-image: url("../img/hero-bg.png");
+  background-image: url("../img/hero-bg@desktop.png");
   background-repeat: no-repeat;
   background-position: calc(100% - 10px);
   background-size: contain;
@@ -535,14 +593,38 @@ button {
   top: 0;
   right: -50px;
 }
+@media screen and (max-width: 768px) {
+  .hero > .container::before {
+    background-image: url("../img/hero-bg@mobile.png");
+    background-position: calc(50% + 350px) -490px;
+    background-size: 1180px 1151px;
+  }
+}
 
 .hero__content {
+  display: flex;
+  flex-direction: column;
   margin-top: 131px;
   margin-left: 188px;
+}
+@media screen and (max-width: 992px) {
+  .hero__content {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero__content {
+    margin-top: 117px;
+  }
 }
 
 .hero__title {
   margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+  .hero__title {
+    margin-bottom: 12px;
+  }
 }
 
 .hero__desc {
@@ -550,6 +632,31 @@ button {
   font-weight: 300;
   font-size: 20px;
   margin-bottom: 35px;
+}
+@media screen and (max-width: 768px) {
+  .hero__desc {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+}
+
+.hero__btn {
+  align-self: flex-start;
+}
+@media screen and (max-width: 768px) {
+  .hero__btn {
+    align-self: center;
+    margin-bottom: 100px;
+  }
+}
+
+.hero__socials {
+  align-self: flex-end;
+}
+@media screen and (max-width: 768px) {
+  .hero__socials {
+    align-self: center;
+  }
 }
 
 .lang {
@@ -566,12 +673,24 @@ button {
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.1);
 }
+@media screen and (max-width: 768px) {
+  .lang {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+}
 
 .logo {
   font-family: "circe", sans-serif;
   font-weight: 700;
   color: var(--clr-white);
   font-size: 30px;
+}
+@media screen and (max-width: 768px) {
+  .logo {
+    font-size: 25px;
+  }
 }
 .logo__link {
   color: inherit;
@@ -723,20 +842,29 @@ button {
   transform: rotate(180deg);
 }
 
-.social {
+.socials {
   display: flex;
-  font-size: 16px;
+  flex-direction: column;
 }
-.social__item {
-  color: var(--clr-social);
+@media screen and (max-width: 768px) {
+  .socials {
+    flex-direction: row;
+  }
 }
-.social__item + .social__item {
-  margin-left: 24px;
+
+.socials__item + .socials__item {
+  margin-top: 20px;
 }
-.social__link {
-  color: inherit;
-  text-decoration: none;
-  text-transform: uppercase;
+@media screen and (max-width: 768px) {
+  .socials__item + .socials__item {
+    margin-top: 0;
+    margin-left: 24px;
+  }
+}
+
+.socials__icon {
+  width: 20px;
+  height: 20px;
 }
 
 .fb-svg {
@@ -747,6 +875,12 @@ button {
   position: relative;
   width: 29px;
   height: 22px;
+}
+@media screen and (max-width: 768px) {
+  .toggle {
+    width: 24px;
+    height: 19px;
+  }
 }
 .toggle span {
   height: 2px;
