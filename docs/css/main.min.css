@@ -737,7 +737,7 @@ button {
   overflow: auto;
   z-index: 50;
 }
-.menu ::before {
+.menu::before {
   content: "";
   position: absolute;
   left: 0;
@@ -749,6 +749,11 @@ button {
   background-repeat: repeat-x;
   z-index: -1;
 }
+@media screen and (max-width: 768px) {
+  .menu::before {
+    display: none;
+  }
+}
 .menu.active {
   top: 0;
   transition: all 0.5s;
@@ -756,7 +761,18 @@ button {
 
 .menu__wrap {
   padding: 205px 0 195px 780px;
+  padding-left: 50%;
   position: relative;
+}
+@media screen and (max-width: 992px) {
+  .menu__wrap {
+    padding-left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .menu__wrap {
+    padding: 108px 15px 50px 15px;
+  }
 }
 .menu__wrap::before {
   content: "";
@@ -768,7 +784,11 @@ button {
   background-image: url("../img/menu-bg.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 555;
+}
+@media screen and (max-width: 992px) {
+  .menu__wrap::before {
+    display: none;
+  }
 }
 .menu__wrap > ul > .menu__item.current-menu-item > a {
   color: var(--clr-pink);
@@ -786,11 +806,16 @@ button {
 }
 @media screen and (max-width: 768px) {
   .menu__wrap > ul > .menu__item.current-menu-item > a::after {
-    width: 46px;
+    width: 30px;
   }
 }
 .menu__wrap > ul > .menu__item + .menu__item {
   margin-top: 33px;
+}
+@media screen and (max-width: 768px) {
+  .menu__wrap > ul > .menu__item + .menu__item {
+    margin-top: 28px;
+  }
 }
 .menu__wrap > ul > .menu__item > a {
   font-family: "circe", sans-serif;
@@ -801,6 +826,11 @@ button {
   text-decoration: none;
   padding-left: 36px;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  .menu__wrap > ul > .menu__item > a {
+    font-size: 20px;
+  }
 }
 .menu__wrap > ul > .menu__item > a::before {
   content: "";
@@ -819,6 +849,19 @@ button {
   column-count: 2;
   column-gap: 20px;
   padding: 35px 0 0 48px;
+}
+@media screen and (max-width: 992px) {
+  .menu__wrap .sub-menu {
+    max-width: 60%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .menu__wrap .sub-menu {
+    max-width: initial;
+    column-count: initial;
+    column-gap: initial;
+    padding: 14px 0 0 40px;
+  }
 }
 .menu__wrap .sub-menu > .menu__item.current-menu-item > a {
   color: var(--clr-pink);
