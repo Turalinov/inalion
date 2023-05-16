@@ -361,6 +361,7 @@ template {
   --clr-white: #ffffff;
   --clr-main: #2A114A;
   --clr-border: #AD35D6;
+  --clr-bg: #160031;
 }
 
 *,
@@ -391,7 +392,7 @@ body {
   background-color: var(--clr-main);
 }
 
-body.locked {
+body.lock {
   overflow: hidden;
 }
 
@@ -550,10 +551,27 @@ button {
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding-top: 38px;
+  padding-bottom: 10px;
+  transition: all 0.5s;
+}
+.header.active {
+  background-color: var(--clr-bg);
+  transition: all 0.5s;
+}
+.header > .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header__logo {
+  position: relative;
+  z-index: 100;
 }
 
 .header__right {
@@ -563,11 +581,21 @@ button {
 }
 
 .header__lang {
+  position: relative;
+  z-index: 100;
   margin-right: 40px;
 }
 
+.header__toggle {
+  position: relative;
+  z-index: 100;
+}
+
 .hero {
+  padding-top: 97px;
   padding-bottom: 45px;
+  position: relative;
+  overflow: hidden;
 }
 @media screen and (max-width: 768px) {
   .hero {
@@ -697,105 +725,64 @@ button {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 1470px) {
-  .menu {
-    margin-left: -100px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .menu {
-    margin-left: 0;
-  }
-}
-.menu__toggle {
-  display: none;
-  background-color: var(--clr-white);
-  font-size: 0;
-  height: 55px;
-  width: 55px;
-  position: relative;
-  border: none;
-  border-radius: 50%;
-  position: relative;
+.menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-bg);
+  top: -300%;
+  transition: all 0.5s;
+  overflow: auto;
   z-index: 50;
 }
-.menu__toggle span {
-  display: block;
+.menu ::before {
+  content: "";
   position: absolute;
-  width: 6px;
-  height: 6px;
-  top: 19px;
-  left: 19px;
-  background-color: var(--clr-black);
-  border-radius: 50%;
-  transition: all 0.3s;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.01), transparent 0.6px);
+  background-size: 193px 100%;
+  background-repeat: repeat-x;
+  z-index: -1;
 }
-.menu__toggle span:nth-child(2) {
-  left: initial;
-  right: 19px;
+.menu.active {
+  top: 0;
+  transition: all 0.5s;
 }
-.menu__toggle span:nth-child(3) {
-  top: initial;
-  bottom: 19px;
+
+.menu__wrap {
+  padding: 205px 0 196px 807px;
 }
-.menu__toggle span:nth-child(4) {
-  top: initial;
-  left: initial;
-  right: 19px;
-  bottom: 19px;
+.menu__wrap > ul > .menu__item + .menu__item {
+  margin-top: 33px;
 }
-@media screen and (max-width: 768px) {
-  .menu__toggle {
-    display: block;
-  }
-}
-@media screen and (max-width: 768px) {
-  .menu__dropdown {
-    display: none;
-  }
-}
-.menu__list {
-  display: flex;
-  align-items: center;
-}
-.menu__link {
-  font-size: 16px;
+.menu__wrap > ul > .menu__item > a {
+  font-family: "circe", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--clr-white);
+  font-size: 30px;
   text-decoration: none;
-  color: var(--clr-text);
+  padding-left: 36px;
+  position: relative;
 }
-@media screen and (max-width: 825px) {
-  .menu__link {
-    font-size: 13px;
-  }
+.menu__wrap > ul > .menu__item > a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("../img/rhombus.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
-.menu__item + .menu__item {
-  margin-left: 40px;
-}
-@media screen and (max-width: 1871px) {
-  .menu__item + .menu__item {
-    margin-left: 25px;
-  }
-}
-.menu.open .menu__toggle span {
-  top: 27px;
-  height: 2px;
-  width: 15px;
-  border-radius: 10px;
-}
-.menu.open .menu__toggle span:nth-child(1) {
-  left: 20px;
-  transform: rotate(45deg);
-}
-.menu.open .menu__toggle span:nth-child(2) {
-  transform: rotate(-45deg);
-  right: 20px;
-}
-.menu.open .menu__toggle span:nth-child(3) {
-  display: none;
-}
-.menu.open .menu__toggle span:nth-child(4) {
-  display: none;
-}
+
 .next, .prev {
   width: 160px;
   height: 160px;
@@ -874,6 +861,7 @@ button {
   position: relative;
   width: 29px;
   height: 22px;
+  transition: all 0.5s;
 }
 @media screen and (max-width: 768px) {
   .toggle {
@@ -889,6 +877,7 @@ button {
   top: 50%;
   transform: translateY(-50%);
   right: 0;
+  transition: all 0.5s;
 }
 .toggle::before, .toggle::after {
   content: "";
@@ -896,6 +885,7 @@ button {
   height: 2px;
   background-color: var(--clr-white);
   right: 0;
+  transition: all 0.5s;
 }
 .toggle::before {
   width: 22px;
@@ -904,4 +894,19 @@ button {
 .toggle::after {
   width: 17px;
   bottom: 0px;
+}
+.toggle.active span {
+  display: none;
+}
+.toggle.active::before, .toggle.active::after {
+  width: 27px;
+  top: 50%;
+  left: 50%;
+  transition: all 0.5s;
+}
+.toggle.active::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.toggle.active::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
