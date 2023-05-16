@@ -577,27 +577,26 @@ button {
 
 .hero > .container {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .hero > .container::before {
   content: "";
   position: absolute;
-  width: 1009px;
-  height: 750px;
+  width: 1140px;
+  height: 1140px;
   background-image: url("../img/hero-bg@desktop.png");
   background-repeat: no-repeat;
-  background-position: calc(100% - 10px);
-  background-size: contain;
+  background-position: center;
+  background-size: cover;
   z-index: -1;
   pointer-events: none;
   top: 0;
   right: -50px;
+  transform: translate(80px, 50px);
 }
 @media screen and (max-width: 768px) {
   .hero > .container::before {
     background-image: url("../img/hero-bg@mobile.png");
-    background-position: calc(50% + 350px) -490px;
-    background-size: 1180px 1151px;
   }
 }
 
